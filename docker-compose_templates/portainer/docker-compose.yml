@@ -1,0 +1,15 @@
+---
+version: '3'
+services:
+  portainer-ce:
+    ports:
+      - '8000:8000'
+      - '9443:9443'
+    container_name: portainer-controller
+    restart: unless-stopped
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '</path/to/data>:/data'
+    image: 'portainer/portainer-ce:latest'
+#    labels:
+#      - "com.centurylinklabs.watchtower.enable=true" #optional, enable if using watchtower

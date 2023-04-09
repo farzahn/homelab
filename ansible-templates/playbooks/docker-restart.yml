@@ -1,0 +1,5 @@
+- hosts: "all" #enter either "all" or a specify a hostset
+  become: yes
+  tasks:
+  - name: Restart Docker
+    command: docker-compose up -d --force-recreate --remove-orphans

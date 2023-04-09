@@ -1,0 +1,21 @@
+{
+    "runOnStartup": true,
+    "cronSchedule": "5 16 * * *",
+    "logLevel": "info",
+    "webPortalConfig": {
+      "baseUrl": "http://<localip>:4206"
+    },
+    "accounts": [
+      {
+        "email": "<epic_email>",
+        "password": "<epic_user_password>",
+        "totp": "<epic_2fa_totp>"
+      }
+    ],
+    "notifiers": [
+      {
+        "type": "discord",
+        "webhookUrl": "<discord_webhook_url>"
+      }
+    ]
+  }

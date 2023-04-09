@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  ferdi-server:
+    container_name: ferdi-server
+    image: getferdi/ferdi-server
+    environment:
+      NODE_ENV: development
+      EXTERNAL_DOMAIN: <ferdi-serverdomain>
+      DB_CONNECTION: postgres
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: <yourdbuser>
+      DB_PASSWORD: <yourdbpass>
+      DB_DATABASE: <yourdbdatabase>
+      DB_SSL: "false"
+      MAIL_CONNECTION: smtp
+      SMTP_HOST: <smtpmailserver>
+      SMTP_PORT: <smtpport>
+      MAIL_SSL: "true/false"
+      MAIL_USERNAME: <yourmailusername>
+      MAIL_PASSWORD: <yourmailpassword>
+      MAIL_SENDER: <sendemailaddress>
+      IS_CREATION_ENABLED: "true"
+      IS_DASHBOARD_ENABLED: "true"
+      IS_REGISTRATION_ENABLED: "true"
+      CONNECT_WITH_FRANZ: "true"
+      DATA_DIR: /data
+    ports:
+      - "<port>:3333"
+    volumes:
+      - "<path to data>:/data"
+      - "<path to recipes>:/app/recipes"
+    restart: unless-stopped
+    depends_on:
+      - db
+
+  db:
+    container_name: ferdi-db
+    image: postgres
+    environment:
+      POSTGRES_USER: <yourdbuser>
+      POSTGRES_PASSWORD: <yourdbpass>
+      POSTGRES_DB: <yourdbdatabase>
+    ports:
+      - "<db-port>:5432"
+    volumes:
+      - "<path to db data>:/var/lib/postgresql/data"
+    restart: unless-stopped

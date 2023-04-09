@@ -1,0 +1,15 @@
+---
+version: '3'
+services:  
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    volumes:
+      - </path/to/app/data>:/app/data
+    ports:
+      - 3001:3001
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+#    labels:
+#      - "com.centurylinklabs.watchtower.enable=true" #optional, enable if using watchtower

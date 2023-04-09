@@ -1,0 +1,17 @@
+---
+# For configuration options and examples, please see:
+# https://github.com/benphelps/homepage/wiki/Settings
+
+title: Welcome Home Farzahn
+
+background: https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80
+
+backgroundOpacity: 0.5
+
+favicon: https://github.com/walkxcode/Dashboard-Icons/blob/main/png/heimdall-light.png
+
+theme: dark # or light
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey

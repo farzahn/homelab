@@ -1,0 +1,9 @@
+- hosts: "all" #enter either "all" or a specify a hostset
+  become: yes
+  tasks:
+  - name: Upgrading Software
+    expect:
+      command: do-release-upgrade
+      responses:
+        'First Question in the prompt' : 'y'
+        'Second Question in the prompt' : 'y'

@@ -1,0 +1,118 @@
+---
+# For configuration options and examples, please see:
+# https://github.com/benphelps/homepage/wiki/Services
+
+- Servers:
+    - Proxmox:
+        icon: proxmox.png
+        href: https://proxmox.example.com
+        description: Proxmox is a virtualization and containerization platform.
+        widget:
+            type: proxmox
+            url: https://<localip>:8006
+            username: api@pam!<proxmox_user>
+            password: <proxmox_user_password>
+    - TrueNAS Scale:
+        icon: truenas-scale.png
+        href: https://truenas.example.com
+        description: TrueNAS Scale is an OpenSource Network Attached Storage solution.
+        widget:
+            type: truenas
+            url: http://<localip>
+#            password: pass # not required if using api key
+#            username: user # not required if using api key
+            key: <truenas_user_api_key> # not required if using username / password
+    - Portainer Controller:
+        icon: portainer.png
+        href: https://portainer.example.com
+        description: Portainer is a lightweight management UI which allows you to easily manage your different Docker environments
+
+
+- Network:
+    - Unifi Controller:
+        icon: unificontroller.png
+        href: https://unifi.example.com
+        widget:
+            type: unifi
+            url: https://<localip>
+            username: <unifi_username>
+            password: <unifi_user_password>
+    - Pi-Hole:
+        icon: pihole.png
+        href: https://dns.example.com/admin
+        widget:
+            type: pihole
+            url: http://<localip>
+            key: <pihole_api_key>
+    - Cloudflare:
+        icon: cloudflare.png
+        href: https://cloudflare.com
+        widget:
+            type: cloudflared
+            accountid: <accountid> # from zero trust dashboard url e.g. https://one.dash.cloudflare.com/<accountid>/home/quick-start
+            tunnelid: <tunnelid> # found in tunnels dashboard under the tunnel name
+            key: <key> # api token with `Account.Cloudflare Tunnel:Read` https://dash.cloudflare.com/profile/api-tokens
+    - UptimeKuma:
+        icon: https://status.example.com/icon.svg
+        href: https://status.example.com
+        widget:
+            type: uptimekuma
+            url: http://<localip>:3001
+            slug: sites
+
+
+- Media:
+    - Plex:
+        icon: plex.png
+        href: https://plex.example.com
+        widget:
+            type: plex
+            url: https://<localip>:32400
+            key: <key> # see https://www.plexopedia.com/plex-media-server/general/plex-token/
+    - Tautulli:
+        icon: tautulli.png
+        href: https://tautulli.example.com
+        widget:
+            type: tautulli
+            url: http://<localip>:8181
+            key: <key>
+    - Spotify:
+        icon: https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg
+        href: https://open.spotify.com/
+
+- Services:
+    - qBittorrent:
+        icon: qbittorrent.png
+        href: https://transmission.example.com/
+        widget:
+            type: qbittorrent
+            url: http://<localip>:8080
+            username: <username>
+            password: <user_password>
+    - Sonarr:
+        icon: sonarr.png
+        href: https://sonarr.example.com
+        widget:
+            type: sonarr
+            url: http://<localip>:8989
+            key: <key>
+    - Radarr:
+        icon: radarr.png
+        href: https://radarr.example.com
+        widget:
+            type: radarr
+            url: http://<localip>:7878
+            key: <key>
+    - Lidarr:
+        icon: lidarr.png
+        href: https://lidarr.example.com
+        widget:
+            type: lidarr
+            url: http://<localip>:8686
+            key: <key>
+    - Jackett:
+        icon: jackett.png
+        href: https://jackett.example.com/UI/Dashboard
+        widget:
+            type: jackett
+            url: http://<localip>:9117
