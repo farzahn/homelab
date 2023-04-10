@@ -28,23 +28,3 @@ homepage:
       - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
 #    labels:
 #      - "com.centurylinklabs.watchtower.enable=true" #optional, enable if using watchtower
-
-
-/home/
-└── docker/
-    └── homepage/
-        └── app/
-            ├── config/
-            ├── 🗁 public/
-                   └── icons/
-
-
-
-
-
-
-
-
-        ├── 🗁 app/
-        ├── 🗋 .env
-        └── 🗋 docker-compose.yml
