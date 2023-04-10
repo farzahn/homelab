@@ -1,4 +1,18 @@
----
+#   Here is an example folder structure for this container
+#   /home/
+#   └── docker/
+#       └── homepage/
+#           └── app/
+#               ├── 🗁 config/
+#               |       ├── 🗋 bookmark.yml
+#               |       ├── 🗋 docker.yml
+#               |       ├── 🗋 kubernetes.yml
+#               |       ├── 🗋 services.yml
+#               |       ├── 🗋 settings.yml
+#               |       ├── 🗋 widgets.yml
+#               ├── 🗁 public/
+#                      └── icons/
+#                          └── 🗋 icon1.png---
 version: '3'
 services:
   epicgames-freegames:
