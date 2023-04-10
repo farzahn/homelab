@@ -1,3 +1,18 @@
+#   Here is an example folder structure for this container
+#   /home/
+#   └── docker/
+#       └── homepage/
+#           └── app/
+#               ├── 🗁 config/
+#               |       ├── 🗋 bookmark.yml
+#               |       ├── 🗋 docker.yml
+#               |       ├── 🗋 kubernetes.yml
+#               |       ├── 🗋 services.yml
+#               |       ├── 🗋 settings.yml
+#               |       ├── 🗋 widgets.yml
+#               ├── 🗁 public/
+#                      └── icons/
+#                          ├── 🗋 icon1.png
 ---
 version: '3'
 services:  
@@ -8,8 +23,28 @@ homepage:
     ports:
       - 3000:3000
     volumes:
-      - </path/to/app/data>:/app/config # Make sure your local config directory exists
-      - </path/to/app/public/icons>:/app/public/icons
+      - ./homepage/app/config:/app/config # Make sure your local config directory exists
+      - ./homepage/app/public/icons:/app/public/icons
       - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
 #    labels:
 #      - "com.centurylinklabs.watchtower.enable=true" #optional, enable if using watchtower
+
+
+/home/
+└── docker/
+    └── homepage/
+        └── app/
+            ├── config/
+            ├── 🗁 public/
+                   └── icons/
+
+
+
+
+
+
+
+
+        ├── 🗁 app/
+        ├── 🗋 .env
+        └── 🗋 docker-compose.yml

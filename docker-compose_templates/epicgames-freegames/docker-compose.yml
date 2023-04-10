@@ -4,7 +4,7 @@ services:
   epicgames-freegames:
     image: charlocharlie/epicgames-freegames
     volumes:
-      - </path/to/app/config>:/usr/app/config
+      - ./epicgames-freegames/config:/usr/app/config
     ports:
       - 4206:3000
 #    labels:

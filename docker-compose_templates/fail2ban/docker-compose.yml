@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Americas/Los_Angeles
     volumes:
-      - </path/to/config>:/config
+      - ./fail2ban/config:/config
       - /var/log:/var/log:ro
 #      - /path/to/sonarr/log:/remotelogs/sonarr:ro #optional
 #      - /path/to/sonarr/log:/remotelogs/sonarr:ro #optional
