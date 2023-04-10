@@ -12,7 +12,7 @@
 #               |       ├── 🗋 widgets.yml
 #               ├── 🗁 public/
 #                      └── icons/
-#                          ├── 🗋 icon1.png
+#                          └── 🗋 icon1.png
 ---
 version: '3'
 services:  
