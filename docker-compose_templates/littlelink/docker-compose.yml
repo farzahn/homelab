@@ -1,0 +1,90 @@
+version: '3'
+services:
+  littlelink-server:
+    image: ghcr.io/techno-tim/littlelink-server:latest
+#    # dockerhub is also supported timothystewart6/littlelink-server
+    # image: timothystewart6/littlelink-server:latest
+    container_name: littlelink-server
+    environment:
+      - META_TITLE=Nice to Meet You!
+      - META_DESCRIPTION=Farange Farange's Home Page
+      - META_AUTHOR=Farzahn Farange
+      - LANG=en
+      - META_INDEX_STATUS=all
+#      - GA_TRACKING_ID=G-XXXXXXXXXX
+      - THEME=Dark
+      - FAVICON_URL=https://icons8.com/icon/91234/home
+#      - AVATAR_URL=/home/site-images/747f6294a85r9098z08a09h6n3.jpg
+#      - AVATAR_2X_URL=/home/site-images/747f6294a85r9098z08a09h6n3.jpg
+#      - AVATAR_ALT=Farzahn Farange Profile Pic
+      - NAME=Farzahn Farange
+      - BIO=Hello, Nice to meet you! My name is Farzahn. Let's connect below!
+      - FOOTER=Thanks for stopping by!
+      # use ENV variable names for order, listed buttons will be boosted to the top
+      - BUTTON_ORDER=EMAIL,LINKED_IN,GITHUB,BOOK,TWITTER,CMHD,EMAIL_ALT,DASH
+      # you can render an unlimited amount of custom buttons by adding
+      # the CUSTOM_BUTTON_* variables and by using a comma as a separator.
+      - EMAIL=hello@farzahn.com
+      - EMAIL_TEXT=Contact Me!
+      - CUSTOM_BUTTON_TEXT=Personal Dashboard, WikiJS
+      - CUSTOM_BUTTON_URL=https://dashboard.cafe-momiji.farzahn.com,https://wiki.farzahn.com
+      - CUSTOM_BUTTON_COLOR=#ED2756,#286ca4
+      - CUSTOM_BUTTON_TEXT_COLOR=#ffffff,#ffffff
+      - CUSTOM_BUTTON_ALT_TEXT=Internal Dash, WikiJS
+      - CUSTOM_BUTTON_NAME=DASH,BOOK
+      - CUSTOM_BUTTON_ICON=fas columns,fab jira,fas journal-whills
+      - BUTTON_TARGET=_blank # controls the button target html attribute
+#      - STACKOVERFLOW=https://stackoverflow.com/
+#      - GITHUB=https://github.com/farzahn
+#      - TWITTER=https://twitter.com/FarzahnFarange
+#      - INSTAGRAM=https://www.instagram.com/techno.tim
+#      - YOUTUBE=https://www.youtube.com/channel/UCOk-gHyjcWZNj3Br4oxwh0A
+#      - TWITCH=https://www.twitch.tv/technotim/
+#      - DISCORD=https://l.technotim.live/discord
+#      - TIKTOK=https://www.tiktok.com/@technotim
+#      - KIT=https://kit.co/TechnoTim
+#      - FACEBOOK=https://facebook.com
+#      - FACEBOOK_MESSENGER=https://facebook.com
+#      - LINKED_IN=https://linkedin.com/in/farzahn-farange-58869363
+#      - PRODUCT_HUNT=https://www.producthunt.com/
+#      - SNAPCHAT=https://www.snapchat.com/
+#      - SPOTIFY=https://www.spotify.com/
+#      - REDDIT=https://www.reddit.com/ffarange
+#      - MEDIUM=https://medium.com
+#      - PINTEREST=https://www.pinterest.com/
+#      - EMAIL=hello@farzahn.com
+#      - EMAIL_TEXT=Email Me!
+#      - EMAIL_ALT=support@farzahn.atlassian.net
+#      - EMAIL_ALT_TEXT=Email Support!
+#      - SOUND_CLOUD=https://soundcloud.com
+#      - FIGMA=https://figma.com
+#      - TELEGRAM=https://telegram.org/
+#      - TUMBLR=https://www.tumblr.com/
+#      - STEAM=https://steamcommunity.com/
+#      - VIMEO=https://vimeo.com/
+#      - WORDPRESS=https://wordpress.com/
+#      - GOODREADS=https://www.goodreads.com/
+#      - SKOOB=https://www.skoob.com.br/
+#      - LETTERBOXD=https://letterboxd.com/
+#      - MASTODON=https://mastodon.social/
+#      - MICRO_BLOG=https://micro.blog/
+#      - WHATSAPP=https://www.whatsapp.com/
+#      - STRAVA=https://www.strava.com/
+#      - BUYMEACOFFEE=https://www.buymeacoffee.com/
+#      - GITLAB=https://www.gitlab.com/
+#      - PATREON=https://www.patreon.com/technotim
+#      - DEVTO=https://dev.to/
+#      - UMAMI_WEBSITE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+#      - UMAMI_APP_URL=https://your-umami-app.com
+#      - PAYPAL=https://www.paypal.me/user
+#      - SLACK=https://slack.com/
+#      - LASTFM=https://last.fm/
+#      - UNTAPPD=https://untappd.com/
+#      - GITEA=https://gitea.io/
+#      - POLYWORK=https://www.polywork.com/
+#      - SIGNAL=https://signal.org/
+    ports:
+      - 8181:3000
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true

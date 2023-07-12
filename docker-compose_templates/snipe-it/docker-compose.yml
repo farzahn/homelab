@@ -1,0 +1,38 @@
+version: '3'
+services:
+  snipe-it:
+#    image: lscr.io/linuxserver/snipe-it:latest
+#    container_name: snipe-it
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - APP_URL=http://inventory.farzahn.com
+#      - MYSQL_PORT_3306_TCP_ADDR=10.50.0.13
+#      - MYSQL_PORT_3306_TCP_PORT=3306
+#      - MYSQL_DATABASE=snipe_it
+#      - MYSQL_USER=snipe_it
+#      - MYSQL_PASSWORD=DeltaSierra117
+#      - TZ=US/Pacific
+#    volumes:
+#      - /home/farzahn/snipe_it/config:/config
+#    ports:
+#      - 8080:80
+#    restart: unless-stopped
+
+#  mariadb:
+#    image: lscr.io/linuxserver/mariadb:latest
+#    container_name: snipe_it_mariadb
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - MYSQL_ROOT_PASSWORD=DeltaSierra117
+#      - TZ=US/Pacific
+#      - MYSQL_DATABASE=snipe_it #optional
+#      - MYSQL_USER=snipe_it #optional
+#      - MYSQL_PASSWORD=DeltaSierra117 #optional
+#      - REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql #optional
+#    volumes:
+#      - /home/farzahn/snipe_it/snipe_it_mariadb:/config
+#    ports:
+#      - 3306:3306
+#    restart: unless-stopped

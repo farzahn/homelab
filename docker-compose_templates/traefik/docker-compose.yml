@@ -1,0 +1,45 @@
+version: '3'
+services:  
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - proxy
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - CF_API_EMAIL=cloudflare@farzahn.com
+      - CF_API_KEY=10d7a43b645da8d94e9ad48414ddc2568f235
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /home/farzahn/traefik/data/traefik.yml:/traefik.yml:ro
+      - /home/farzahn/traefik/data/acme.json:/acme.json
+      - /home/farzahn/traefik/data/config.yml:/config.yml:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=http"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.cafe-momiji.farzahn.com`)"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=farzahn:$$apr1$$cBw6z82z$$PQiikKDGG1A6QLwidgeHr."
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
+#      - "traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=200000000000"
+#      - "traefik.http.middlewares.limit.buffering.memRequestBodyBytes=200000000000"
+#      - "traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=200000000000"
+#      - "traefik.http.middlewares.limit.buffering.memResponseBodyBytes=200000000000"
+      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.cafe-momiji.farzahn.com`)"
+      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
+#      - "traefik.http.routers.traefik-secure.tls.domains[0].main=farzahn.com"
+#      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.farzahn.com"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=cafe-momiji.farzahn.com"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.cafe-momiji.farzahn.com"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+#      - "com.centurylinklabs.watchtower.enable=true"

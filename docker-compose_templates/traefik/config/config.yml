@@ -1,0 +1,258 @@
+http:
+ #region routers
+  routers:
+    pihole:
+      entryPoints:
+        - "https"
+      rule: "Host(`dns.cafe-momiji.farzahn.com`)"   #internal
+      middlewares:
+        - default-headers
+        - addprefix-pihole
+      tls: {}
+      service: pihole
+
+    internal_proxmox:
+      entryPoints:
+        - "https"
+      rule: "Host(`europa.cafe-momiji.farzahn.com`)"   #external
+      middlewares:
+        - default-headers
+      tls: {}
+      service: internal_proxmox
+
+    homepage:
+      entryPoints:
+        - "https"
+      rule: "Host(`homepage.cafe-momiji.farzahn.com`)"   #internal
+      middlewares:
+        - default-headers
+      tls: {}
+      service: homepage
+
+#    heimdall:
+#      entryPoints:
+#        - "https"
+#      rule: "Host(`dashboard.cafe-momiji.farzahn.com`)"   #internal
+#      middlewares:
+#        - default-headers
+#      tls: {}
+#      service: heimdall
+
+    ombi:
+      entryPoints:
+        - "https"
+      rule: "Host(`request.farzahn.com`)"   #external
+      middlewares:
+        - default-headers
+      tls: {}
+      service: ombi
+
+    uptime-kuma:
+      entryPoints:
+        - "https"
+      rule: "Host(`status.cafe-momiji.farzahn.com`)"   #internal
+      middlewares:
+        - default-headers
+      tls: {}
+      service: uptime-kuma
+
+#    gitlab:
+#      entryPoints:
+#        - "https"
+#      rule: "Host(`gitlab.farzahn.com`)"   #external
+#      middlewares:
+#        - default-headers
+#      tls: {}
+#      service: gitlab
+
+    truenas:
+      entryPoints:
+        - "https"
+      rule: "Host(`truenas.cafe-momiji.farzahn.com`)"   #internal
+      middlewares:
+        - default-headers
+      tls: {}
+      service: truenas
+
+#    netdata:
+#      entryPoints:
+#        - "https"
+#      rule: "Host(`monitor.cafe-momiji.farzahn.com`)"   #internal
+#      middlewares:
+#        - default-headers
+#      tls: {}
+#      service: netdata
+
+    portainer-controller:
+      entryPoints:
+        - "https"
+      rule: "Host(`portainer.cafe-momiji.farzahn.com`)"   #internal
+      middlewares:
+        - default-headers
+      tls: {}
+      service: portainer-controller
+
+    wg-ez:
+      entryPoints:
+        - "https"
+      rule: "Host(`wireguard.cafe-momiji.farzahn.com`)"   #internal
+      middlewares:
+        - default-headers
+      tls: {}
+      service: wg-ez
+
+    router:
+      entryPoints:
+        - "https"
+      rule: "Host(`router.cafe-momiji.farzahn.com`)"   #internal
+      middlewares:
+        - default-headers
+      tls: {}
+      service: router
+
+    tautulli:
+      entryPoints:
+        - "https"
+      rule: "Host(`tautulli.cafe-momiji.farzahn.com`)"   #internal
+      middlewares:
+        - default-headers
+      tls: {}
+      service: tautulli
+
+    transmission:
+      entryPoints:
+        - "https"
+      rule: "Host(`transmission.farzahn.com`)"   #external
+      middlewares:
+        - default-headers
+      tls: {}
+      service: transmission
+#endregion
+#region services
+  services:
+#    heimdall:
+#      loadBalancer:
+#        servers:
+#          - url: "https://10.50.0.201:4433"
+#        passHostHeader: true
+
+    homepage:
+      loadBalancer:
+        servers:
+          - url: "http://10.50.0.201:3000"
+
+    internal_proxmox:
+      loadBalancer:
+        servers:
+          - url: "https://10.50.0.220:8006"
+        passHostHeader: true
+
+    pihole:
+      loadBalancer:
+        servers:
+          - url: "http://10.50.0.10"
+        passHostHeader: true
+
+    ombi:
+      loadBalancer:
+        servers:
+          - url: "http://10.50.0.12:3579"
+        passHostHeader: true
+
+    uptime-kuma:
+      loadBalancer:
+        servers:
+          - url: "http://10.50.0.201:3001"
+        passHostHeader: true
+
+#    gitlab:
+#      loadBalancer:
+#        servers:
+#          - url: "https://10.50.0.12"
+#        passHostHeader: true
+
+    truenas:
+      loadBalancer:
+        servers:
+          - url: "https://10.50.0.200"
+        passHostHeader: true
+
+#    netdata:
+#      loadBalancer:
+#        servers:
+#          - url: "http://10.50.0.200:19999"
+#        passHostHeader: true
+
+    portainer-controller:
+      loadBalancer:
+        servers:
+          - url: "https://10.50.0.11:9443"
+        passHostHeader: true
+
+    router:
+      loadBalancer:
+        servers:
+          - url: "https://10.50.0.1"
+        passHostHeader: true
+
+    tautulli:
+      loadBalancer:
+        servers:
+          - url: "http://10.50.0.12:8181"
+        passHostHeader: true
+    transmission:
+      loadBalancer:
+        servers:
+          - url: "http://10.50.0.15:9091"
+        passHostHeader: true
+
+    wg-ez:
+      loadBalancer:
+        servers:
+          - url: "http://10.50.0.201:51821"
+        passHostHeader: true
+
+
+
+#endregion
+  middlewares:
+    addprefix-pihole:
+      addPrefix:
+        prefix: "/admin"
+    https-redirect:
+      redirectScheme:
+        scheme: https
+
+
+#default-headers
+    default-headers:
+      headers:
+        frameDeny: true
+        sslRedirect: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 15552000
+        customFrameOptionsValue: SAMEORIGIN
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+
+#    default-whitelist:
+#      ipWhiteList:
+#        sourceRange:
+#        - "10.0.0.0/24"
+#        - "192.168.0.0/16"
+#        - "172.0.0.0/8"
+
+    secured:
+      chain:
+        middlewares:
+        - default-whitelist
+        - default-headers
+
+
+
+
+
