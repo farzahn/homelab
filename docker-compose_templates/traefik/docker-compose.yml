@@ -12,19 +12,19 @@ services:
       - 80:80
       - 443:443
     environment:
-      - CF_API_EMAIL=cloudflare@farzahn.com
-      - CF_API_KEY=10d7a43b645da8d94e9ad48414ddc2568f235
+      - CF_API_EMAIL=<CF_EMAIL_ADDRESS>
+      - CF_API_KEY=<CF_API_KEY>
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /home/farzahn/traefik/data/traefik.yml:/traefik.yml:ro
-      - /home/farzahn/traefik/data/acme.json:/acme.json
-      - /home/farzahn/traefik/data/config.yml:/config.yml:ro
+      - ~/traefik/data/traefik.yml:/traefik.yml:ro
+      - ~/traefik/data/acme.json:/acme.json
+      - ~/traefik/data/config.yml:/config.yml:ro
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.cafe-momiji.farzahn.com`)"
-      - "traefik.http.middlewares.traefik-auth.basicauth.users=farzahn:$$apr1$$cBw6z82z$$PQiikKDGG1A6QLwidgeHr."
+      - "traefik.http.routers.traefik.rule=Host(`traefik.<YOUR_DOMAIN>.com`)"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=<TRAEFIK_USERNAME>:<TRAEFIK_PASSWORD_IN_BASE64>"
       - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
 #      - "traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=200000000000"
@@ -33,13 +33,13 @@ services:
 #      - "traefik.http.middlewares.limit.buffering.memResponseBodyBytes=200000000000"
       - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
       - "traefik.http.routers.traefik-secure.entrypoints=https"
-      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.cafe-momiji.farzahn.com`)"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.<YOUR_DOMAIN>.com`)"
       - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
       - "traefik.http.routers.traefik-secure.tls=true"
       - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
-#      - "traefik.http.routers.traefik-secure.tls.domains[0].main=farzahn.com"
-#      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.farzahn.com"
-      - "traefik.http.routers.traefik-secure.tls.domains[0].main=cafe-momiji.farzahn.com"
-      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.cafe-momiji.farzahn.com"
+#      - "traefik.http.routers.traefik-secure.tls.domains[0].main=<YOUR_DOMAIN>.com"
+#      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.<YOUR_DOMAIN>.com"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=<YOUR_SUB_DOMAIN>.<YOUR_DOMAIN>.com"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.<YOUR_SUB_DOMAIN>.<YOUR_DOMAIN>.com"
       - "traefik.http.routers.traefik-secure.service=api@internal"
 #      - "com.centurylinklabs.watchtower.enable=true"
